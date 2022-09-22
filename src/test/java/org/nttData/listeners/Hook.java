@@ -5,7 +5,6 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.nttData.common.CreatePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,6 +19,7 @@ public class Hook {
     public static WebDriver browserDriver; // Driver di un generico browser che andremo poi a specializzare.
     private String browser; // Tipo di brower da passare come parametro
     private String url = "https://the-internet.herokuapp.com/login";
+    private long timeOut = 5;
 
 
     @Before // Operazione iniziale da eseguire ad ogni esecuzione di scenario di test.
@@ -43,9 +43,8 @@ public class Hook {
         options.addArguments("-private"); //Aggiungo all'oggetto options l'opzione browse incognito
         browserDriver = new FirefoxDriver(); //Assegno all'oggetto browserDriver il driver per Firefox
         browserDriver.manage().window().maximize(); //Maximizo il browser
-        browserDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); //Wait implicito di default (Viene usato questo nel tag @FindBy)
+        browserDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut)); //Wait implicito di default (Viene usato questo nel tag @FindBy)
         browserDriver.get(url); //Navigo al link passato come parametro
-        CreatePage.readDriver(browserDriver);
         System.out.println("firefoxDriver started");
     }
 
@@ -56,9 +55,8 @@ public class Hook {
         options.addArguments("--incognito"); //Aggiungo all'oggetto options l'opzione browse incognito
         browserDriver = new ChromeDriver(); // Assegno all'oggetto browserDriver il driver per Chrome
         browserDriver.manage().window().maximize(); //Maximizo il browser
-        browserDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30)); //Wait implicito di default (Viene usato questo nel tag @FindBy)
+        browserDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut)); //Wait implicito di default (Viene usato questo nel tag @FindBy)
         browserDriver.get(url); //Navigo al link passato come parametro
-        CreatePage.readDriver(browserDriver);
         System.out.println("chromeDriver started");
     }
 

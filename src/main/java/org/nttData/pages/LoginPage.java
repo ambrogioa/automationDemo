@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     WebElement inputUsername;
 
     @FindBy(xpath = "//input[@id='password']")
-    WebElement inputpassword;
+    WebElement inputPassword;
 
     /*@FindBy(xpath = "//div[@class='flash success']")
     WebElement loginSuccess;*/
@@ -37,14 +37,20 @@ public class LoginPage extends BasePage {
         System.out.println("LOGINFO---> Login Page loaded");
     }*/
 
-    public void waitLoadLoginPage(){
-        this.getWebDriverWait(5).until(ExpectedConditions.visibilityOf(this.loginForm));
-        System.out.println("Login Page loaded");
+    public boolean waitLoadLoginPage(){
+        try{
+            this.getWebDriverWait(5).until(ExpectedConditions.visibilityOf(this.loginForm));
+            System.out.println("LOGINFO---> Login Page loaded!");
+            return true;
+        }catch(Exception e)
+        {
+           return false;
+        }
     }
 
     public void insertData(){
         this.inputUsername.sendKeys("tomsmith");
-        this.inputpassword.sendKeys("SuperSecretPassword!");
+        this.inputPassword.sendKeys("SuperSecretPassword!");
     }
 
     public void clickLoginButton(){
