@@ -14,8 +14,15 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Form Authentication')]")
     WebElement linkFormAuthentication;
 
+    @FindBy(xpath = "//*[contains(text(),'WYSIWYG Editor')]")
+    WebElement linkWysiwygEditor;
+
     public void clickFormAuthenticationPage(){
         this.linkFormAuthentication.click();
+    }
+
+    public void clickWysiwygEditorPage(){
+        this.linkWysiwygEditor.click();
     }
 
 
