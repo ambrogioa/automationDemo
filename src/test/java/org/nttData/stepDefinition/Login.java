@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.nttData.listeners.Hook;
+import org.nttData.pages.HomePage;
 import org.nttData.pages.LoginPage;
 import org.junit.Assert;
 
@@ -14,6 +15,8 @@ public class Login {
 
     @Given("User is on login page")
     public void userIsOnLoginPage() {
+        HomePage homePage = new HomePage(Hook.browserDriver);
+        homePage.clickFormAuthenticationPage();
         Assert.assertTrue("LOGINFO---> Login Page not loaded!", loginPage.waitLoadLoginPage());
     }
     @When("User enters username and password")

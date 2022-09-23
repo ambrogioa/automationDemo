@@ -18,7 +18,7 @@ public class Hook {
 
     public static WebDriver browserDriver; // Driver di un generico browser che andremo poi a specializzare.
     private String browser; // Tipo di brower da passare come parametro
-    private String url = "https://the-internet.herokuapp.com/login";
+    private String url = "https://the-internet.herokuapp.com";
     private long timeOut = 5;
 
 
