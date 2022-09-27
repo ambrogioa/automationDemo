@@ -16,21 +16,26 @@ public class TinyMceWysiwyg {
     public void userIsOnTinyMceWysiwygEditorPage() {
         HomePage homePage = new HomePage(Hook.browserDriver);
         homePage.clickWysiwygEditorPage();
-        Assert.assertTrue("LOGINFO---> TinyMCE WYSIWYG Editor page not loaded!", tinyMceWysiwygPages.waitLoadLoginPage());
+        Assert.assertTrue("LOGINFO---> TinyMCE WYSIWYG Editor page not loaded!", tinyMceWysiwygPages.waitLoadTinyMcePage());
         System.out.println("LOGINFO---> User is on TinyMCE WYSIWYG Editor page");
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("User switch to iFrame editor")
     public void userSwitchToIframeEditor() {
-        System.out.println("LOGINFO---> User switch to iFrame editor");
-        throw new io.cucumber.java.PendingException();
+        try{
+            tinyMceWysiwygPages.switchToIframe();
+            System.out.println("LOGINFO---> User switch to iFrame editor");
+        }catch(Exception e)
+        {throw new RuntimeException(e);}
     }
 
     @Then("user insert text into editor")
     public void userInsertTextIntoEditor() {
-        System.out.println("LOGINFO---> user insert text into editor");
-        throw new io.cucumber.java.PendingException();
+        try{
+            tinyMceWysiwygPages.sendText();
+            System.out.println("LOGINFO---> user insert text into editor");
+        }catch(Exception e)
+        {throw new RuntimeException(e);}
     }
 
 }

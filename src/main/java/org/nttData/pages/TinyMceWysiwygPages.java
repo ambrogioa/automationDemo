@@ -1,6 +1,7 @@
 package org.nttData.pages;
 
 import org.nttData.common.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,10 +13,13 @@ public class TinyMceWysiwygPages extends BasePage {
         super(driver);
     }
 
+    private final By textAreaIframeBy = By.xpath("//div[@class='tox-edit-area']//iframe[@class='tox-edit-area__iframe']");
+    private final By bodyTextAreaBy = By.xpath("//body[@id='tinymce']");
+
     @FindBy(xpath = "//iframe[@class='tox-edit-area__iframe']")
     WebElement textAreaIframe;
 
-    public boolean waitLoadLoginPage(){
+    public boolean waitLoadTinyMcePage(){
         try{
             this.getWebDriverWait(5).until(ExpectedConditions.visibilityOf(this.textAreaIframe));
             System.out.println("LOGINFO---> TinyMCE WYSIWYG Editor page loaded!");
@@ -24,6 +28,22 @@ public class TinyMceWysiwygPages extends BasePage {
         {
             return false;
         }
+    }
+
+    public void switchToIframe(){
+        WebElement iFrameCookies = this.driver.findElement(this.textAreaIframeBy);
+        this.driver.switchTo().frame(iFrameCookies);
+        WebElement bodyTextArea = this.driver.findElement(this.bodyTextAreaBy);
+        bodyTextArea.click();
+    }
+
+    public void sendText(){
+        //this.textAreaIframe.click();
+        WebElement bodyTextArea = this.driver.findElement(this.bodyTextAreaBy);
+        bodyTextArea.clear();
+        bodyTextArea.sendKeys("PROVIAMO A VEDERE SE FUNZIONA");
+        //WebElement statusbar = this.driver.findElement(By.xpath("//div[@class='tox-statusbar']"));
+        //this.getWebDriverWait(10).until(ExpectedConditions.visibilityOf(statusbar));
     }
 
 }

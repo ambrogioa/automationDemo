@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = {"org/nttData/listeners", "org/nttData/stepDefinition"},
         //tags = "@login", //Vedere come passarlo come parametro estero
+        //tags = "@TinyMceWysiwyg",
         plugin = { "pretty", "json:target/cucumber/report.json", "html:target/cucumber/report.html"},
         monochrome = true
 )
